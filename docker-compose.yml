@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+
+  nodejs-app:
+    image: nodejs/feature-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: feature-api
+    restart: always
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 7000:7000
+    links:
+      - mongodb
+    environment:
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+    depends_on:
+      - mongodb
+    networks:
+      - node-app-network
+
+  mongodb:
+    image: mongo:4.4.6
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=rootuser
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass
+    networks:
+      - node-app-network
+
+networks:
+  node-app-network:
+    driver: bridge

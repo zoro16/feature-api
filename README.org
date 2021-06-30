@@ -1,0 +1,7 @@
+#+OPTIONS: H:2 num:nil toc:nil \n:nil @:t ::t |:t ^:{} _:{} *:t TeX:t LaTeX:t
+
+* Getting Started
+  - Run ~npm install~ to install dependencies
+  - Run ~npm run build~ to compile TypeScript files
+  - Run ~docker-compose up~ to start the application
+  - Run ~npm run test~ to start a simple test
